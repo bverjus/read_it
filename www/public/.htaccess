@@ -1,0 +1,41 @@
+#--------------------------------------------------
+# Répertoire : /
+#--------------------------------------------------
+
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+
+
+#--------------------------------------------------
+# ROUTES
+#--------------------------------------------------
+
+# ROUTES DES USERS
+    # USERS LOGIN
+    # PATTERN: login
+    # URL: ?users=login
+    RewriteRule ^login$ index.php?login [L]
+
+    # USERS VERIFICATION
+    # PATTERN: verify
+    # URL: ?verify
+    RewriteRule ^verify$ index.php?verify [L]
+
+    # USERS ERROR 
+    # PATTERN: loginError
+    # URL: ?login=error
+    RewriteRule ^loginError$ index.php?login=error [L]
+
+# ROUTES DES POSTS
+    # DETAILS D'UN POST
+    # PATTERN: /posts/id/slug
+    # URL: ?postID=xx
+    RewriteRule ^posts\/([1-9][0-9]*)\/[a-z0-9]([a-z0-9\-]*[a-z0-9])*$ index.php?postID=$1 [L]
+
+
+# --------------------------------------------------
+RewriteCond %{REQUEST_URI} !\.(js|css|jpg|gif|zip|png|pdf)$ [NC]
+# RewriteRule ^(.*)$ index.php [L]

@@ -1,0 +1,76 @@
+#--------------------------------------------------
+# Répertoire : /
+#--------------------------------------------------
+
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+
+
+#--------------------------------------------------
+# ROUTES
+#--------------------------------------------------
+
+# ROUTES DES USERS
+    # USERS LOGIN
+    # PATTERN: login
+    # URL: ?users=login
+    RewriteRule ^login$ index.php?login [L]
+
+# ROUTES DES POSTS
+    # LISTE DES POSTS
+    # PATTERN: posts
+    # URL: ?posts=index
+    RewriteRule ^posts$ index.php?posts=index [L]
+
+# FORMULAIRE D'AJOUT D'UN POST
+    # PATTERN: posts/addForm
+    # URL: ?posts=addForm
+    RewriteRule ^posts\/addForm$ index.php?posts=addForm [L]
+
+    # ajout d'un post 
+    RewriteRule ^posts\/add$ index.php?posts=add [L]
+
+    # EDITION D'UN POST
+    # PATTERN: posts/edit/id
+    # URL: ?posts=edit&id=x
+    RewriteRule ^posts\/edit\/([1-9][0-9]*)$ index.php?posts=edit&id=$1 [L]
+
+    # MISE À JOUR D'UN POST
+    # PATTERN: posts/update/id
+    # URL: ?posts=update&id=x
+    RewriteRule ^posts\/update\/([1-9][0-9]*)$ index.php?posts=update&id=$1 [L]
+
+# ROUTES DE DECONNEXION
+    # DECONNXION D'UN UTILISATEUR
+    # PATTERN: disconnect
+    # URL: ?disconnect=disconnect
+    RewriteRule ^disconnect$ index.php?disconnect [L]
+
+    # ROUTES DES CATEGORIES
+    # liste des categories 
+    # PATTERN: categories
+    # URL: ?categories=categories
+    RewriteRule ^categories$ index.php?categories [L]
+
+    #Add category
+    RewriteRule ^addCategory$ index.php?addCategory [L]
+
+    #delete category
+    RewriteRule ^deleteCategory\/([1-9][0-9]*)$ index.php?deleteCategory=$1 [L]
+
+    # EDITION D'UNE CATÉGORIE
+    # PATTERN: categories/edit/id
+    # URL: ?categories=edit&id=x
+    RewriteRule ^categories\/edit\/([1-9][0-9]*)$ index.php?categories=edit&id=$1 [L]
+
+    # MISE À JOUR D'UNE CATÉGORIE
+    # PATTERN: categories/update/id
+    # URL: ?categories=update&id=x
+    RewriteRule ^categories\/update\/([1-9][0-9]*)$ index.php?categories=update&id=$1 [L]
+
+# --------------------------------------------------
+RewriteCond %{REQUEST_URI} !\.(js|css|jpg|gif|zip|png|pdf)$ [NC]
+# RewriteRule ^(.*)$ index.php [L]
